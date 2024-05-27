@@ -663,6 +663,7 @@ select:focus {
 
   .contianer-fluid .content .center-content .chart-box {
     flex-direction: column;
+    min-width: 300px;
   }
 
   .contianer-fluid .content .center-content .chart-box .box-center-content {
