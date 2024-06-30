@@ -11,6 +11,24 @@ document.querySelector('.btn-main-sidebar').addEventListener('click', () => {
   }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('.dropbtn').addEventListener('click', function() {
+      document.querySelector('.dropdown-content').classList.toggle('show');
+  });
+
+  window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          for (var i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                  openDropdown.classList.remove('show');
+              }
+          }
+      }
+  }
+});
+
 
 const buttons = document.querySelectorAll('.btn-center-nav');
 buttons.forEach(button => {
@@ -31,6 +49,7 @@ btnhw.forEach(button => {
 document.addEventListener('DOMContentLoaded', () => {
   chart_time_study();
   chart_result_study();
+  updateTime();
 });
 
 const chart_time_study = () => {
@@ -158,3 +177,21 @@ const chart_result_study = () => {
   var chart = new ApexCharts(document.querySelector("#chart_result_study"), options);
   chart.render();
 }
+
+const updateTime = () => {
+  const now = new Date();
+  
+  const options = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit',
+      hour12: false
+  };
+  const formattedDateTime = now.toLocaleDateString('th-TH', options);
+  document.getElementById('now_today').innerHTML = formattedDateTime;
+};
+setInterval(updateTime, 1000);
