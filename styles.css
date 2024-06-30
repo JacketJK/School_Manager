@@ -111,13 +111,14 @@ body {
   height: 55px;
   border-radius: 100%;
   margin-left: 8px;
-  overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   cursor: pointer;
 }
 
 .contianer-fluid .nav-continer .right-nav .user-profile .user-url {
+  height: 55px;
   width: 55px;
+  border-radius: 100%;
   background-color: var(--dark-light);
 }
 
@@ -345,6 +346,7 @@ select:focus {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 18px;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .contianer-fluid .content .home-work .my-home-work .card-container .card-header {
@@ -433,10 +435,15 @@ select:focus {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 30px;
   align-self: stretch;
+  text-align: center;
 }
 
 .contianer-fluid .content .center-content .chart-box .box-center-content:nth-child(2) {
   margin-left: 20px;
+}
+
+.contianer-fluid .content .center-content .chart-box .box-center-content span {
+  margin-top: 20px;
 }
 
 .contianer-fluid .content .right-content {
@@ -462,6 +469,11 @@ select:focus {
   background-color: transparent;
   margin-bottom: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
+}
+
+.activity-container .activity-box:hover {
+  transform: scale(1.05);
 }
 
 .activity-container .activity-box .activity-header {
@@ -583,6 +595,41 @@ select:focus {
   background-color: var(--dark);
   color: var(--light);
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 18px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--dark-light);
+  color: var(--light);
+}
+
+.show {
+  display: block;
+}
+
+
 
 
 @media (max-width: 1200px) {
