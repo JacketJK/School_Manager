@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="src/airplane.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="src/airplane.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="src/airplane.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/JacketJK/image/JK-Store_Logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/JacketJK/image/JK-Store_Logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/JacketJK/image/JK-Store_Logo.png">
     <title>Class Room Manager | ระบบบริหารห้องเรียน</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
+
 <body>
     <div class="contianer-fluid">
         <nav class="nav-continer">
             <div class="left-nav">
-                <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png" class="brand-logo">
+                <a class="btn-main-sidebar" style="margin-right: 15px;"><i class="bi bi-list-ul"></i></a>
+                <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/JK-Store_Logo.png" class="brand-logo">
             </div>
             <div class="center-nav">
                 <button class="btn-center-nav">วันนี้</button>
@@ -24,289 +33,423 @@
             </div>
             <div class="right-nav">
                 <div class="btn-group-top">
-                    <button class="btn-right-nav"><i class="bi bi-envelope"></i></button>
-                    <button class="btn-right-nav"><i class="bi bi-bell"></i></button>
-                    <button class="btn-right-nav"><i class="bi bi-info-circle"></i></button>
-                    <button class="btn-right-nav"><i class="bi bi-gear"></i></button>
+                    <!-- Messages Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn-right-nav dropbtn" id="btn-envelope" style="position: relative;">
+                            <i class="bi bi-envelope"></i>
+                            <span class="badge-count" id="envelope-badge" style="display: none;">0</span>
+                        </button>
+                        <div class="dropdown-content dropdown-menu-right" id="envelope-dropdown">
+                            <div class="dropdown-header">
+                                <span>กล่องข้อความ</span>
+                                <a href="#" id="mark-messages-read" style="font-size: 12px; display: inline; padding: 0; color: var(--accent-color, #091e21);">อ่านทั้งหมด</a>
+                            </div>
+                            <div class="dropdown-body" id="messages-list-container">
+                                <!-- Rendered dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn-right-nav dropbtn" id="btn-bell" style="position: relative;">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge-count" id="bell-badge" style="display: none;">0</span>
+                        </button>
+                        <div class="dropdown-content dropdown-menu-right" id="bell-dropdown">
+                            <div class="dropdown-header">
+                                <span>การแจ้งเตือน</span>
+                                <a href="#" id="mark-notifications-read" style="font-size: 12px; display: inline; padding: 0; color: var(--accent-color, #091e21);">อ่านทั้งหมด</a>
+                            </div>
+                            <div class="dropdown-body" id="notifications-list-container">
+                                <!-- Rendered dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-right-nav" id="btn-info"><i class="bi bi-info-circle"></i></button>
+                    <button class="btn-right-nav" id="btn-gear"><i class="bi bi-gear"></i></button>
                 </div>
                 <div class="user-profile dropdown">
-                    <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/student.png" class="user-url dropbtn">
+                    <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/student.png" class="user-url dropbtn"
+                        id="headerProfileImage">
                     <div class="dropdown-content">
-                        <a href="#"><i class="bi bi-person-circle"></i> โปรไฟล์</a>
-                        <a href="#"><i class="bi bi-gear"></i> ตั้งค่าบัญชีผู้ใช้</a>
+                        <a href="#" id="dropProfileBtn"><i class="bi bi-person-circle"></i> โปรไฟล์</a>
+                        <a href="#" id="dropSettingsBtn"><i class="bi bi-gear"></i> ตั้งค่าบัญชีผู้ใช้</a>
                         <a href="#"><i class="bi bi-box-arrow-right"></i> ออกจากระบบ</a>
                     </div>
                 </div>
                 <div class="span-user">
-                    <span>เด็กชายจักรกฤษณ์ หวังสุข</span>
-                    <small>นักเรียน ชั้นประถมศึกษาปีที่ 6</small>
+                    <span id="headerStudentName">เด็กชายจักรกฤษณ์ หวังสุข</span>
+                    <small id="headerStudentClass">นักเรียน ชั้นประถมศึกษาปีที่ 6</small>
                 </div>
             </div>
         </nav>
 
         <div class="sidebar">
-            <a class="btn-main-sidebar"><i class="bi bi-list-ul"></i></a>
             <div class="sidebar-manu expanded">
-                <a class="btn-sidebar"><i class="bi bi-inboxes"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-archive"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-bag"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-calendar-week"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-clipboard-pulse"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-people"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-cup-hot"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-folder"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-info-circle"></i></a>
-                <a class="btn-sidebar"><i class="bi bi-gear"></i></a>
+                <a class="btn-sidebar active" data-view="home" data-tooltip="หน้าแรก"><i class="bi bi-inboxes"></i></a>
+                <a class="btn-sidebar" data-view="archive" data-tooltip="คลังข้อมูล"><i class="bi bi-archive"></i></a>
+                <a class="btn-sidebar" data-view="shop" data-tooltip="ร้านค้าอุปกรณ์"><i class="bi bi-bag"></i></a>
+                <a class="btn-sidebar" data-view="calendar" data-tooltip="ปฏิทินการเรียน"><i
+                        class="bi bi-calendar-week"></i></a>
+                <a class="btn-sidebar" data-view="grades" data-tooltip="รายงานผลการเรียน"><i
+                        class="bi bi-clipboard-pulse"></i></a>
+                <a class="btn-sidebar" data-view="people" data-tooltip="ข้อมูลนักเรียน/ครู"><i
+                        class="bi bi-people"></i></a>
+                <a class="btn-sidebar" data-view="activities" data-tooltip="กิจกรรม"><i class="bi bi-cup-hot"></i></a>
+                <a class="btn-sidebar" data-view="portfolio" data-tooltip="แฟ้มผลงาน"><i class="bi bi-folder"></i></a>
+                <a class="btn-sidebar" data-view="info" data-tooltip="เกี่ยวกับระบบ"><i
+                        class="bi bi-info-circle"></i></a>
+                <a class="btn-sidebar" data-view="settings" data-tooltip="ตั้งค่า"><i class="bi bi-gear"></i></a>
+                <!-- Role-Specific Sidebar Buttons (hidden by default) -->
+                <a class="btn-sidebar" id="sidebar-academic" data-view="academic" data-tooltip="ฝ่ายวิชาการ"
+                    style="display: none;"><i class="bi bi-journal-check"></i></a>
+                <a class="btn-sidebar" id="sidebar-homeroom" data-view="homeroom" data-tooltip="ครูประจำชั้น"
+                    style="display: none;"><i class="bi bi-person-video3"></i></a>
+                <a class="btn-sidebar" id="sidebar-discipline" data-view="discipline" data-tooltip="ฝ่ายปกครอง"
+                    style="display: none;"><i class="bi bi-shield-lock"></i></a>
+                <a class="btn-sidebar" id="sidebar-admin" data-view="admin" data-tooltip="แอดมินระบบ"
+                    style="display: none;"><i class="bi bi-sliders2-vertical"></i></a>
             </div>
         </div>
 
         <div class="sup-header">
             <div class="header-titel">
                 <small>ระบบบริหารห้องเรียน</small>
-                <span>รายงานสรุปการเรียน</span>
+                <span id="pageTitleLabel">รายงานสรุปการเรียน</span>
             </div>
             <div class="search-box">
                 <i class="bi bi-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="ค้นหาข้อมูลรายวิชา">
+                <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาข้อมูลรายวิชา หรือ การบ้าน">
             </div>
         </div>
 
         <div class="content">
-            <div class="home-work">
-                <div class="content-header">
-                    <div class="title">การบ้านของฉัน</div>
-                    <button class="btn-header">
-                        <i class="bi bi-send-plus"></i>
-                    </button>
-                </div>
+            <!-- 1. HOME VIEW -->
+            <div class="view-pane active" id="view-home"></div>
 
-                <button class="btn-home-work active">วันนี้</button>
-                <button class="btn-home-work">พรุ่งนี้</button>
+            <!-- 2. ARCHIVE VIEW -->
+            <div class="view-pane" id="view-archive"></div>
 
-                <div class="fleid">
-                    <div class="fleid-icon">
-                        <i class="bi bi-calculator"></i>
-                    </div>
-                    <select class="fleid-input">
-                        <option value="" disabled>โปรดเลือก</option>
-                        <option value="ภาษาไทย">ภาษาไทย</option>
-                        <option value="คณิตศาสตร์" selected>คณิตศาสตร์</option>
-                    </select>
-                </div>
+            <!-- 3. SHOP VIEW -->
+            <div class="view-pane" id="view-shop"></div>
 
-                <div class="my-home-work">
-                    <div class="card-container">
-                        <div class="card-header">
-                            <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png">
-                            <i class="bi bi-check-circle"></i>
-                        </div>
-                        <div class="card-title">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น. ของจำนวนนับ 2 จำนวน</div>
-                        <div class="card-detial">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น.ของจำนวนนับ 2 จำนวน</div>
-                    </div>
-                    <div class="card-container">
-                        <div class="card-header">
-                            <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png">
-                            <i class="bi bi-check-circle"></i>
-                        </div>
-                        <div class="card-title">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น. ของจำนวนนับ 2 จำนวน</div>
-                        <div class="card-detial">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น.ของจำนวนนับ 2 จำนวน</div>
-                    </div>
-                    <div class="card-container">
-                        <div class="card-header">
-                            <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png">
-                            <i class="bi bi-check-circle"></i>
-                        </div>
-                        <div class="card-title">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น. ของจำนวนนับ 2 จำนวน</div>
-                        <div class="card-detial">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น.ของจำนวนนับ 2 จำนวน</div>
-                    </div>
-                    <div class="card-container">
-                        <div class="card-header">
-                            <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png">
-                            <i class="bi bi-check-circle"></i>
-                        </div>
-                        <div class="card-title">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น. ของจำนวนนับ 2 จำนวน</div>
-                        <div class="card-detial">ความสัมพันธ์ระหว่าง ห.ร.ม.  กับ ค.ร.น.ของจำนวนนับ 2 จำนวน</div>
-                    </div>
+            <!-- 4. CALENDAR VIEW -->
+            <div class="view-pane" id="view-calendar"></div>
 
-                </div>
+            <!-- 5. GRADES VIEW -->
+            <div class="view-pane" id="view-grades"></div>
+
+            <!-- 6. PEOPLE VIEW -->
+            <div class="view-pane" id="view-people"></div>
+
+            <!-- 7. ACTIVITIES VIEW -->
+            <div class="view-pane" id="view-activities"></div>
+
+            <!-- 8. PORTFOLIO VIEW -->
+            <div class="view-pane" id="view-portfolio"></div>
+
+            <!-- 9. INFO VIEW -->
+            <div class="view-pane" id="view-info"></div>
+
+            <!-- 10. SETTINGS VIEW -->
+            <div class="view-pane" id="view-settings"></div>
+
+            <!-- 11. ADMIN VIEW (User Management) -->
+            <div class="view-pane" id="view-admin"></div>
+
+            <!-- 12. ACADEMIC VIEW -->
+            <div class="view-pane" id="view-academic"></div>
+
+            <!-- 13. HOMEROOM VIEW -->
+            <div class="view-pane" id="view-homeroom"></div>
+
+            <!-- 14. DISCIPLINE VIEW -->
+            <div class="view-pane" id="view-discipline"></div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="homeworkModalOverlay">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <span id="homeworkModalTitle">เพิ่มการบ้าน</span>
+                <i class="bi bi-x-lg modal-close" id="homeworkModalClose"></i>
             </div>
+            <form id="homeworkForm">
+                <input type="hidden" id="homeworkId">
+                <label>วิชา</label>
+                <select id="homeworkSubject" required></select>
 
-            <div class="center-content">
-                <div class="chart-box">
-                    <div class="box-center-content">
-                        <div class="content-header">
-                            <div class="title">เวลาเรียน</div>
-                            <button class="btn-header">
-                                <i class="bi bi-arrow-up-right"></i>
-                            </button>
-                        </div>
-                        <span id="now_today"></span>
+                <label>ชื่องาน</label>
+                <input type="text" id="homeworkTitle" placeholder="เช่น แบบฝึกหัดหน้า 12" required>
 
-                        <div id="chart_time_study"></div>
-                    </div>
-                    <div class="box-center-content">
-                        <div class="content-header">
-                            <div class="title">ผลการเรียน</div>
-                            <div>
-                                <button class="btn-header">
-                                    <i class="bi bi-sliders2-vertical"></i>
-                                </button>
-                                <button class="btn-header">
-                                    <i class="bi bi-arrow-up-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                      
-                        <div id="chart_result_study"></div>
+                <label>รายละเอียด</label>
+                <textarea id="homeworkDetail" rows="3" placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)"></textarea>
+
+                <label>กำหนดส่ง</label>
+                <select id="homeworkDue">
+                    <option value="today">วันนี้</option>
+                    <option value="tomorrow">พรุ่งนี้</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn-delete" id="homeworkDeleteBtn">ลบ</button>
+                    <div class="modal-actions-right">
+                        <button type="button" class="modal-btn-cancel" id="homeworkCancelBtn">ยกเลิก</button>
+                        <button type="submit" class="modal-btn-save">บันทึก</button>
                     </div>
                 </div>
-                <div class="progress-box">
-                    <div class="content-header">
-                        <div class="title">คะแนนเก็บรายวิชา</div>
-                        <button class="btn-header">
-                            <i class="bi bi-sliders"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="progress-container">
-                        <div class="progress-details">
-                            <div class="progress-label">ภาษาไทย</div>
-                            <span>50/100 คะแนน</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" style="width: 50%;"></div> 
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-details">
-                            <div class="progress-label">คณิตศาสตร์</div>
-                            <span>52/100 คะแนน</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" style="width: 52%;"></div> 
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-details">
-                            <div class="progress-label">ภาษาอังกฤษ</div>
-                            <span>45/100 คะแนน</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" style="width: 45%;"></div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-details">
-                            <div class="progress-label">วิทยาศาสตร์</div>
-                            <span>32/100 คะแนน</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" style="width: 32%;"></div> 
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-details">
-                            <div class="progress-label">สังคมศึกษา</div>
-                            <span>60/100 คะแนน</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" style="width: 60%;"></div> 
-                        </div>
-                    </div>
-                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="gradesModalOverlay">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <span>แก้ไขคะแนนเก็บรายวิชา</span>
+                <i class="bi bi-x-lg modal-close" id="gradesModalClose"></i>
             </div>
+            <form id="gradesForm">
+                <div id="gradesFormFields"></div>
+                <label>เพิ่มวิชาใหม่</label>
+                <div class="add-subject-row">
+                    <input type="text" id="newSubjectName" placeholder="ชื่อวิชาใหม่">
+                    <button type="button" id="addSubjectBtn">เพิ่ม</button>
+                </div>
+                <div class="modal-actions">
+                    <div class="modal-actions-right">
+                        <button type="button" class="modal-btn-cancel" id="gradesCancelBtn">ยกเลิก</button>
+                        <button type="submit" class="modal-btn-save">บันทึก</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-            <div class="right-content">
-                <div class="content-header">
-                    <div class="title">กิจกรรมโรงเรียน</div>
-                    <button class="btn-header">
-                        <i class="bi bi-calendar4"></i>
-                    </button>
+    <!-- Dynamic Portfolio Modal -->
+    <div class="modal-overlay" id="portfolioModalOverlay">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <span>เพิ่มชิ้นงานใน E-Portfolio</span>
+                <i class="bi bi-x-lg modal-close" id="portfolioModalClose"></i>
+            </div>
+            <form id="portfolioForm">
+                <label>ชื่อผลงาน / เกียรติบัตร</label>
+                <input type="text" id="portfolioTitle" placeholder="เช่น เกียรติบัตรแข่งขันหมากรุกระดับอำเภอ" required>
+
+                <label>วิชาหรือหมวดหมู่</label>
+                <input type="text" id="portfolioCategory" placeholder="เช่น วิทยาศาสตร์, กิจกรรมนันทนาการ" required>
+
+                <label>รายละเอียดของผลงาน</label>
+                <textarea id="portfolioDetail" rows="3" placeholder="อธิบายสั้นๆ เกี่ยวกับผลงานชิ้นนี้..."></textarea>
+
+                <label>ลิงก์รูปภาพผลงาน (URL)</label>
+                <input type="text" id="portfolioImage" placeholder="https://..."
+                    value="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png">
+
+                <div class="modal-actions">
+                    <div class="modal-actions-right">
+                        <button type="button" class="modal-btn-cancel" id="portfolioCancelBtn">ยกเลิก</button>
+                        <button type="submit" class="modal-btn-save">บันทึก</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Modal Overlay (Admin only) -->
+    <div class="modal-overlay" id="userModalOverlay">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <span id="userModalTitle">เพิ่มผู้ใช้ใหม่</span>
+                <i class="bi bi-x-lg modal-close" id="userModalClose"></i>
+            </div>
+            <form id="userForm">
+                <input type="hidden" id="userIdInput">
+                <label>ชื่อ-นามสกุล</label>
+                <input type="text" id="userNameInput" placeholder="เช่น เด็กชายสมศักดิ์ แสนดี" required>
+
+                <label>ชื่อผู้ใช้ (Username)</label>
+                <input type="text" id="userUsernameInput" placeholder="เช่น somsak1" required>
+
+                <label>รหัสผ่าน (Password)</label>
+                <input type="password" id="userPasswordInput" placeholder="รหัสผ่าน" required>
+
+                <label>บทบาท (Role)</label>
+                <select id="userRoleSelect" required>
+                    <option value="student">นักเรียน (Student)</option>
+                    <option value="subject_teacher">ครูประจำวิชา (Subject Teacher)</option>
+                    <option value="homeroom_teacher">ครูประจำชั้น (Homeroom Teacher)</option>
+                    <option value="academic_affairs">ฝ่ายวิชาการ (Academic Affairs)</option>
+                    <option value="discipline_affairs">ฝ่ายปกครอง (Student Affairs / Discipline)</option>
+                    <option value="admin">แอดมิน (Admin)</option>
+                </select>
+
+                <div id="userSubjectGroup" style="display:none; margin-top: 10px;">
+                    <label>วิชาที่สอน (ใส่เครื่องหมายจุลภาคคั่น เช่น คณิตศาสตร์, ภาษาไทย)</label>
+                    <input type="text" id="userSubjectsInput" class="form-control" placeholder="เช่น คณิตศาสตร์">
                 </div>
 
-                <div class="activity-container">
-                    <div class="activity-box">
-                        <div class="activity-header">
-                            <small>ประชุม</small>
-                            <span>กีฬาสี</span>
-                            <i class="bi bi-arrow-up-right"></i>
-                        </div>
-                        <div class="activity-detail">
-                            <span>16.00 น.</span>
-                            <div class="activity-create">
-                                <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png">
-                                <small>สภานักเรียน</small>
-                            </div>
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="activity-box">
-                        <div class="activity-header">
-                            <small>กิจกรรม</small>
-                            <span>วันภาษาไทย</span>
-                            <i class="bi bi-arrow-up-right"></i>
-                        </div>
-                        <div class="activity-detail">
-                            <span>10.00 น.</span>
-                            <div class="activity-create">
-                                <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/logo-Project.png">
-                                <small>โรงเรียน</small>
-                            </div>
-                            <span></span>
-                        </div>
-                    </div>
-
-                    <span class="activity-see-all">ดูกิจกรรมทั้งหมด <i class="bi bi-chevron-right"></i></span>
+                <div id="userClassroomGroup" style="display:none; margin-top: 10px;">
+                    <label>ห้องเรียนที่รับผิดชอบ (ใส่เครื่องหมายจุลภาคคั่น เช่น ป.6/1, ป.6/2)</label>
+                    <input type="text" id="userClassroomsInput" class="form-control" placeholder="เช่น ป.6/1">
                 </div>
 
-                <div class="content-header">
-                    <div class="title">ประชาสัมพันธ์</div>
-                    <button class="btn-header">
-                        <i class="bi bi-megaphone"></i>
-                    </button>
+                <div class="modal-actions" style="margin-top: 20px;">
+                    <button type="button" class="modal-btn-delete" id="userDeleteBtn" style="display:none;">ลบ</button>
+                    <div class="modal-actions-right">
+                        <button type="button" class="modal-btn-cancel" id="userCancelBtn">ยกเลิก</button>
+                        <button type="submit" class="modal-btn-save">บันทึก</button>
+                    </div>
                 </div>
-                
-                <div class="annouce-container">
-                    <div class="annouce-box">
-                        <div class="annouce-detail">
-                            <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/user-1.png">
-                            <div class="annouce-text">
-                                <span>เข้าร่วมกิจกรรมวันภาษาไทย</span>
-                                <span>ในวันที่ 26 มิถุยายน 2567 ณ หอประชุมประจำโรงเรียน เวลา 10:00 นาฬิกา หากนักเรียนคนไหนไม่เข้าร่วมให้รายงานตัวกับครูประจำชั้น</span>
-                                <button>ตรวจสอบ <i class="bi bi-chevron-right"></i></button>
-                            </div>
-                        </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Announcement Manage Modal -->
+    <div class="modal-overlay" id="announcementModalOverlay">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <span id="announcementModalTitle">สร้างประกาศใหม่</span>
+                <i class="bi bi-x-lg modal-close" id="announcementModalClose"></i>
+            </div>
+            <form id="announcementForm">
+                <input type="hidden" id="announcementId">
+                <label>หัวข้อประกาศ / กิจกรรม</label>
+                <input type="text" id="announcementTitle" placeholder="เช่น แจ้งกำหนดการส่งใบสมัครสอบ" required style="width: 100%; margin-bottom: 12px; padding: 8px; border: 1px solid var(--border); border-radius: 6px;">
+
+                <label>รายละเอียด</label>
+                <textarea id="announcementDetail" rows="4" placeholder="ระบุรายละเอียดประชาสัมพันธ์หรือชื่องานสำหรับกิจกรรม..." required style="width: 100%; margin-bottom: 12px; padding: 8px; border: 1px solid var(--border); border-radius: 6px;"></textarea>
+
+                <label>ประเภทประกาศ</label>
+                <select id="announcementType" required style="width: 100%; margin-bottom: 12px; padding: 8px; border: 1px solid var(--border); border-radius: 6px;">
+                    <option value="acknowledge">รับทราบข่าวสาร (Acknowledge)</option>
+                    <option value="vote">ลงประชามติ/โหวตเลือกข้อเสนอ (Vote)</option>
+                </select>
+
+                <div id="announcementVoteOptionsGroup" style="display: none; margin-bottom: 12px;">
+                    <label>ตัวเลือกโหวต (คั่นตัวเลือกด้วยเครื่องหมายจุลภาค เช่น ข้าวมันไก่, ข้าวหมูแดง)</label>
+                    <input type="text" id="announcementVoteOptions" class="form-control" placeholder="ตัวเลือก A, ตัวเลือก B, ตัวเลือก C" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 6px;">
+                </div>
+
+                <div class="modal-actions" style="margin-top: 15px;">
+                    <button type="button" class="modal-btn-delete" id="announcementDeleteBtn" style="display: none;">ลบ</button>
+                    <div class="modal-actions-right" style="margin-left: auto; display: flex; gap: 8px;">
+                        <button type="button" class="modal-btn-cancel" id="announcementCancelBtn">ยกเลิก</button>
+                        <button type="submit" class="modal-btn-save">บันทึก</button>
                     </div>
-                    <div class="annouce-box">
-                        <div class="annouce-detail">
-                            <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/user-30.png">
-                            <div class="annouce-text">
-                                <span>เข้าร่วมกิจกรรมวันภาษาไทย</span>
-                                <span>ในวันที่ 26 มิถุยายน 2567 ณ หอประชุมประจำโรงเรียน เวลา 10:00 นาฬิกา หากนักเรียนคนไหนไม่เข้าร่วมให้รายงานตัวกับครูประจำชั้น</span>
-                                <button>ตรวจสอบ <i class="bi bi-chevron-right"></i></button>
-                            </div>
-                        </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Announcement Offcanvas Drawer -->
+    <div class="offcanvas-overlay" id="announcementOffcanvasOverlay">
+        <div class="offcanvas-box" id="announcementOffcanvasBox">
+            <div class="offcanvas-header">
+                <div class="offcanvas-title-group">
+                    <span class="offcanvas-label">รายละเอียดประชาสัมพันธ์</span>
+                    <h3 class="offcanvas-title" id="offcanvasTitle">หัวข้อประชาสัมพันธ์</h3>
+                </div>
+                <i class="bi bi-x-lg offcanvas-close" id="announcementOffcanvasClose"></i>
+            </div>
+            <div class="offcanvas-body">
+                <div class="offcanvas-sender">
+                    <img id="offcanvasSenderImg" src="" alt="Sender">
+                    <div class="offcanvas-sender-info">
+                        <span id="offcanvasSenderName">ชื่อผู้ส่ง</span>
+                        <small>อาจารย์ผู้ประกาศ</small>
                     </div>
-                    <div class="annouce-box">
-                        <div class="annouce-detail">
-                            <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/user-2.png">
-                            <div class="annouce-text">
-                                <span>เข้าร่วมกิจกรรมวันภาษาไทย</span>
-                                <span>ในวันที่ 26 มิถุยายน 2567 ณ หอประชุมประจำโรงเรียน เวลา 10:00 นาฬิกา หากนักเรียนคนไหนไม่เข้าร่วมให้รายงานตัวกับครูประจำชั้น</span>
-                                <button>ตรวจสอบ <i class="bi bi-chevron-right"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="offcanvas-content" id="offcanvasContent">
+                    รายละเอียดประชาสัมพันธ์จะแสดงตรงนี้
+                </div>
+                <div class="offcanvas-action-section" id="offcanvasActionSection">
+                    <!-- Dynamic action buttons (Acknowledge / Voting) -->
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Activity Offcanvas Drawer -->
+    <div class="offcanvas-overlay" id="activityOffcanvasOverlay">
+        <div class="offcanvas-box" id="activityOffcanvasBox">
+            <div class="offcanvas-header">
+                <div class="offcanvas-title-group">
+                    <span class="offcanvas-label" id="activityOffcanvasLabel">รายละเอียดกิจกรรม</span>
+                    <h3 class="offcanvas-title" id="activityOffcanvasTitle">ชื่อกิจกรรม</h3>
+                </div>
+                <i class="bi bi-x-lg offcanvas-close" id="activityOffcanvasClose"></i>
+            </div>
+            <div class="offcanvas-body">
+                <div class="activity-offcanvas-cover-container" id="activityOffcanvasCoverContainer">
+                    <img id="activityOffcanvasCover" src="" alt="Activity Image" style="width: 100%; border-radius: 12px; margin-bottom: 15px; max-height: 200px; object-fit: cover;">
+                </div>
+                <div class="offcanvas-sender" style="margin-bottom: 15px;">
+                    <img id="activityOffcanvasCreatorImg" src="" alt="Creator">
+                    <div class="offcanvas-sender-info">
+                        <span id="activityOffcanvasCreatorName">ผู้จัดกิจกรรม</span>
+                        <small id="activityOffcanvasTime">เวลาจัดกิจกรรม</small>
+                    </div>
+                </div>
+                <div class="offcanvas-content" id="activityOffcanvasContent" style="margin-bottom: 20px; line-height: 1.6;">
+                    รายละเอียดกิจกรรมจะแสดงตรงนี้
+                </div>
+                
+                <div class="activity-participants-section" style="margin-bottom: 20px;">
+                    <div class="offcanvas-label" style="font-weight: 600; margin-bottom: 8px;">ผู้เข้าร่วมกิจกรรมแล้ว (<span id="activityParticipantCount">0</span> คน)</div>
+                    <div id="activityParticipantList" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <!-- Badges will be rendered dynamically -->
+                    </div>
+                </div>
 
+                <div class="offcanvas-action-section" id="activityOffcanvasActionSection">
+                    <!-- Dynamic Register / Cancel Button -->
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Login Portal -->
+    <div class="login-portal-overlay" id="loginPortal" style="display: none;">
+        <div class="login-box animate__animated animate__fadeInDown">
+            <div class="login-header">
+                <img src="https://cdn.jsdelivr.net/gh/JacketJK/image/JK-Store_Logo.png" class="login-logo">
+                <h2>Class Room Manager</h2>
+                <p>ระบบบริหารจัดการห้องเรียนยุคดิจิทัล</p>
+            </div>
 
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">ชื่อผู้ใช้งาน (Username)</label>
+                    <input type="text" id="loginUsername" class="form-control" required
+                        placeholder="เช่น student1, teacher_home, admin">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">รหัสผ่าน (Password)</label>
+                    <input type="password" id="loginPassword" class="form-control" required
+                        placeholder="รหัสผ่าน (default: password)">
+                </div>
+                <button type="submit" class="btn-login">เข้าสู่ระบบ</button>
+            </form>
+
+            <div class="login-divider">
+                <span>หรือ เลือกบัญชีทดสอบเพื่อเข้าใช้งาน</span>
+            </div>
+
+            <div class="quick-login-grid" id="quickLoginGrid">
+                <!-- Rendered dynamically by script.js -->
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </body>
+
 </html>

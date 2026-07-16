@@ -1,0 +1,101 @@
+                <div class="home-work">
+                    <div class="content-header">
+                        <div class="title" id="homeworkSectionTitle">การบ้านของฉัน</div>
+                        <button class="btn-header" id="addHomeworkBtn" title="เพิ่มการบ้าน">
+                            <i class="bi bi-send-plus"></i>
+                        </button>
+                    </div>
+
+                    <div id="homeClassroomSelectorContainer" style="display: none; margin-bottom: 12px;">
+                        <div class="fleid">
+                            <div class="fleid-icon"><i class="bi bi-house-door"></i></div>
+                            <select class="fleid-input" id="homeClassroomSelector">
+                                <option value="c_p6_1">ชั้น ป.6/1</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn-home-work active">วันนี้</button>
+                    <button class="btn-home-work">พรุ่งนี้</button>
+
+                    <div class="fleid">
+                        <div class="fleid-icon">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                        <select class="fleid-input" id="subjectFilter">
+                            <option value="all">ทุกวิชา</option>
+                        </select>
+                    </div>
+
+                    <div class="my-home-work" id="homeworkList"></div>
+                </div>
+
+                <div class="center-content">
+                    <div class="chart-box">
+                        <div class="box-center-content">
+                            <div class="content-header">
+                                <div class="title">เวลาเรียน</div>
+                                <button class="btn-header">
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </button>
+                            </div>
+                            <span id="now_today"></span>
+
+                            <div id="chart_time_study"></div>
+                        </div>
+                        <div class="box-center-content">
+                            <div class="content-header">
+                                <div class="title">ผลการเรียน</div>
+                                <div>
+                                    <button class="btn-header">
+                                        <i class="bi bi-sliders2-vertical"></i>
+                                    </button>
+                                    <button class="btn-header">
+                                        <i class="bi bi-arrow-up-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="chart_result_study"></div>
+                        </div>
+                    </div>
+                    <div class="progress-box">
+                        <div class="content-header">
+                            <div class="title" id="gradesSectionTitle">คะแนนเก็บรายวิชา</div>
+                            <button class="btn-header" id="editGradesBtn" title="แก้ไขคะแนน">
+                                <i class="bi bi-sliders"></i>
+                            </button>
+                        </div>
+
+                        <div id="gradesList"></div>
+                    </div>
+                </div>
+
+                <div class="right-content">
+                    <div class="content-header">
+                        <div class="title">กิจกรรมโรงเรียน</div>
+                        <button class="btn-header">
+                            <i class="bi bi-calendar4"></i>
+                        </button>
+                    </div>
+
+                    <div class="activity-container">
+                        <div id="activitiesHomeList">
+                            <!-- Rendered dynamically by script.js -->
+                        </div>
+
+                        <span class="activity-see-all" id="goToActivitiesBtn">ดูกิจกรรมทั้งหมด <i
+                                class="bi bi-chevron-right"></i></span>
+                    </div>
+
+                    <div class="content-header">
+                        <div class="title">ประชาสัมพันธ์</div>
+                        <button class="btn-header" id="manageAnnouncementsBtn" title="จัดการประชาสัมพันธ์">
+                            <i class="bi bi-megaphone"></i>
+                        </button>
+                    </div>
+
+                    <div class="annouce-container" id="announcementsContainer">
+                        <!-- Rendered dynamically by script.js -->
+                    </div>
+                </div>

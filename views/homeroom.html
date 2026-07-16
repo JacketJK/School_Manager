@@ -1,0 +1,67 @@
+                <div class="dashboard-grid">
+                    <div class="dashboard-widget-card">
+                        <div class="widget-icon-box" style="background: #3b82f6;"><i class="bi bi-person-badge"></i>
+                        </div>
+                        <div class="widget-details">
+                            <span class="widget-label">จำนวนนักเรียนในห้อง</span>
+                            <span class="widget-value" id="homeroomStudentCount">3 คน</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-widget-card">
+                        <div class="widget-icon-box" style="background: #10b981;"><i class="bi bi-star-fill"></i></div>
+                        <div class="widget-details">
+                            <span class="widget-label">เกรดเฉลี่ยห้อง (GPA)</span>
+                            <span class="widget-value" id="homeroomClassGpa">3.50</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-widget-card">
+                        <div class="widget-icon-box" style="background: #f59e0b;"><i class="bi bi-calendar-check"></i>
+                        </div>
+                        <div class="widget-details">
+                            <span class="widget-label">มาเรียนวันนี้ (Attendance)</span>
+                            <span class="widget-value" id="homeroomAttendanceRate">100%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card" style="grid-column: span 2;">
+                        <div class="people-tabs" style="margin-bottom: 15px;">
+                            <button class="people-tab active" id="btnTabHomeroomAttendance"><i
+                                    class="bi bi-calendar-check"></i> บันทึกการมาเรียนวันนี้</button>
+                            <button class="people-tab" id="btnTabHomeroomBehavior"><i class="bi bi-heart-fill"></i>
+                                จัดการคะแนนพฤติกรรม</button>
+                        </div>
+
+                        <!-- Attendance Section -->
+                        <div id="homeroomAttendanceSection">
+                            <div class="table-container">
+                                <table class="crm-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ชื่อนักเรียน</th>
+                                            <th>สถานะการเข้าเรียน</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="homeroomAttendanceTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Behavior Section -->
+                        <div id="homeroomBehaviorSection" style="display: none;">
+                            <div class="table-container">
+                                <table class="crm-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ชื่อนักเรียน</th>
+                                            <th>คะแนนพฤติกรรมสะสม</th>
+                                            <th>ปรับปรุงคะแนน</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="homeroomBehaviorTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>

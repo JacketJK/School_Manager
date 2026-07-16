@@ -1,0 +1,47 @@
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <div class="content-header">
+                            <div class="title"><i class="bi bi-shield-plus text-accent"></i> บันทึกพฤติกรรมนักเรียน</div>
+                            <span class="sub-title">บันทึกความประพฤติ/คะแนนพฤติกรรมให้กับนักเรียนทุกคน</span>
+                        </div>
+                        <form id="disciplineLogForm">
+                            <label>เลือกนักเรียน</label>
+                            <select id="disciplineStudentSelect" class="form-control" style="width: 100%; margin-bottom: 12px; padding: 8px;" required></select>
+
+                            <label>คะแนนพฤติกรรม</label>
+                            <select id="disciplinePointsSelect" class="form-control" style="width: 100%; margin-bottom: 12px; padding: 8px;" required>
+                                <option value="10">ทำความดีอย่างยิ่ง (+10 คะแนน)</option>
+                                <option value="5">ทำความดีทั่วไป (+5 คะแนน)</option>
+                                <option value="-5">ตักเตือน/ทำผิดระเบียบ (-5 คะแนน)</option>
+                                <option value="-10">ทำความผิดร้ายแรง (-10 คะแนน)</option>
+                            </select>
+
+                            <label>เหตุผล / พฤติกรรม</label>
+                            <input type="text" id="disciplineReasonInput" class="form-control" style="width: 100%; margin-bottom: 12px; padding: 8px;" placeholder="ระบุเหตุผล เช่น ช่วยเหลืองานโรงเรียน..." required>
+
+                            <button type="submit" class="btn-settings-save" style="margin-top: 10px; width: 100%; padding: 10px;">บันทึกพฤติกรรม</button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="content-header">
+                            <div class="title"><i class="bi bi-shield-exclamation text-accent"></i>
+                                ประวัติพฤติกรรมและการลงวินัยนักเรียน</div>
+                            <span class="sub-title">บันทึกพฤติกรรมและการทำความดีของนักเรียนทุกคนในระดับโรงเรียน</span>
+                        </div>
+                        <div class="table-container">
+                            <table class="crm-table">
+                                <thead>
+                                    <tr>
+                                        <th>วันที่บันทึก</th>
+                                        <th>ชื่อนักเรียน</th>
+                                        <th>คะแนน</th>
+                                        <th>เหตุผล / พฤติกรรม</th>
+                                        <th>ผู้บันทึก</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="disciplineBehaviorLogTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>

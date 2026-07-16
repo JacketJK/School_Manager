@@ -1,0 +1,61 @@
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <div class="content-header">
+                            <div class="title"><i class="bi bi-person-fill-gear text-accent"></i>
+                                แก้ไขข้อมูลโปรไฟล์นักเรียน</div>
+                            <span class="sub-title">แก้ไขข้อมูลชื่อ นามสกุล
+                                และระดับชั้นของคุณที่จะปรากฏบนส่วนแสดงผลของระบบ</span>
+                        </div>
+                        <form id="settingsProfileForm">
+                            <label>ชื่อ-นามสกุลนักเรียน</label>
+                            <input type="text" id="settingsStudentName" class="form-control" required
+                                placeholder="เด็กชายจักรกฤษณ์ หวังสุข">
+
+                            <label>ระดับชั้นการศึกษา</label>
+                            <input type="text" id="settingsStudentClass" class="form-control" required
+                                placeholder="นักเรียน ชั้นประถมศึกษาปีที่ 6">
+
+                            <label>ลิงก์รูปภาพโปรไฟล์ (URL)</label>
+                            <input type="text" id="settingsStudentPhoto" class="form-control" placeholder="https://...">
+
+                            <button type="submit" class="btn-settings-save">บันทึกโปรไฟล์</button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="content-header">
+                            <div class="title"><i class="bi bi-palette-fill text-accent"></i>
+                                การตั้งค่าธีมและการเข้าใช้งาน</div>
+                            <span class="sub-title">เลือกปรับแต่งธีมสว่าง/มืด และโทนสีตามความชอบส่วนตัวของคุณ</span>
+                        </div>
+                        <div class="settings-option">
+                            <div class="option-label">
+                                <strong>โหมดธีมมืด (Dark Mode)</strong>
+                                <small>ช่วยถนอมสายตาขณะเข้าใช้งานในช่วงเวลากลางคืน</small>
+                            </div>
+                            <label class="switch-toggle">
+                                <input type="checkbox" id="settingsDarkModeToggle">
+                                <span class="slider-round"></span>
+                            </label>
+                        </div>
+
+                        <div class="settings-option color-selection">
+                            <div class="option-label">
+                                <strong>สีสันเน้นย้ำ (Accent Color)</strong>
+                                <small>เลือกสีหลักในการแสดงผลปุ่ม ไอคอน และกราฟต่างๆ</small>
+                            </div>
+                            <div class="color-picker-group">
+                                <span class="color-dot active" data-color="#091e21" style="background-color: #091e21;"
+                                    title="สีดั้งเดิม"></span>
+                                <span class="color-dot" data-color="#4e36f5" style="background-color: #4e36f5;"
+                                    title="น้ำเงินรอยัล"></span>
+                                <span class="color-dot" data-color="#e91e63" style="background-color: #e91e63;"
+                                    title="ชมพูสตรอว์เบอร์รี"></span>
+                                <span class="color-dot" data-color="#00a86b" style="background-color: #00a86b;"
+                                    title="เขียวมรกต"></span>
+                                <span class="color-dot" data-color="#f57c00" style="background-color: #f57c00;"
+                                    title="ส้มแมนดาริน"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
